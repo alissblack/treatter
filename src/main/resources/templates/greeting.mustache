@@ -2,28 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trial web-page</title>
+    <title>Greeting</title>
 </head>
 <body>
-    <div>
-        <form method="post">
-            <input type="text" name="text" placeholder="Enter your message">
-            <input type="text" name="tag" placeholder="Tag">
-            <button type="submit">Add</button>
-        </form>
-    </div>
-
-    <div>Messages list</div>
-    <form method="post" action="filter">
-        <input type="text" name="filter">
-        <button type="submit">Find</button>
-    </form>
-    {{#messages}}
-    <div>
-        <b>{{id}}</b>
-        <span>{{text}}</span>
-        <i>{{tag}}</i>
-    </div>
-    {{/messages}}
+    <div>Hello, user!</div>
+    <a href="/main">Main Page</a>
 </body>
 </html>

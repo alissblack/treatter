@@ -1,31 +1,34 @@
-package com.github.alissblack.treatter;
+package com.github.alissblack.treatter.controller;
 
 import com.github.alissblack.treatter.domain.Message;
 import com.github.alissblack.treatter.repos.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @GetMapping
+    @GetMapping("/")
     public String greeting(Map<String, Object> model) {
-        Iterable<Message> messages = messageRepository.findAll();
-
-        model.put("messages", messages);
         return "greeting";
     }
 
-    @PostMapping
+    @GetMapping("/main")
+    public String main(Map<String, Object> model) {
+        Iterable<Message> messages = messageRepository.findAll();
+
+        model.put("messages", messages);
+        return "main";
+    }
+
+    @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
 
@@ -35,7 +38,7 @@ public class GreetingController {
 
         model.put("messages", messages);
 
-        return "greeting";
+        return "main";
     }
 
     @PostMapping("filter")
@@ -50,6 +53,6 @@ public class GreetingController {
 
         model.put("messages", messages);
 
-        return "greeting";
+        return "main";
     }
 }
